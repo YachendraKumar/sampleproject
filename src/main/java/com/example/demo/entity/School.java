@@ -8,9 +8,13 @@ import java.util.Date;
 
 @Entity
 @Table(name="school")
-public class School {
+public class School extends CommonFields {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long studentId;
     private String studentName;
