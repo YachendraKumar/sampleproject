@@ -7,7 +7,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class School extends CommonFields{
+@Table(name="school")
+public class School {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
