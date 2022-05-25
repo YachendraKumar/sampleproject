@@ -4,6 +4,9 @@ import com.example.demo.entity.School;
 import com.example.demo.repository.SchoolRepo;
 import com.example.demo.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,5 +59,15 @@ public class SchoolServiceImpl implements SchoolService {
         return schoolRepo.save(sc);
     }
 
+	@Override
+	public List<School> fetchStudentListWithSorting(String studentId) {
+		return schoolRepo.findAll(Sort.by(studentId));
+	}
+
+	@Override
+	public Page<School> fetchStudentListWithPagination(int pageNumber, int pageSize) {
+		Page<School> page = schoolRepo.findAll(PageRequest.of(pageNumber, pageSize));
+		return page;
+	}
 
 }

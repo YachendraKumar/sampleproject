@@ -4,6 +4,8 @@ import com.example.demo.entity.School;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 public interface SchoolService {
 
    public School saveStudent(School school);
@@ -17,4 +19,9 @@ public interface SchoolService {
    public School updateStudentById(Long studentId, School school);
 
     public School patchById(Long studentId, School school);
+
+
+	public List<School> fetchStudentListWithSorting(String studentId);
+
+	public Page<School> fetchStudentListWithPagination(int pageNumber, int pageSize);
 }
