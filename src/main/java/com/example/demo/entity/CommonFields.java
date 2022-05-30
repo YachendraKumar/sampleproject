@@ -32,8 +32,8 @@ public abstract class CommonFields implements Serializable {
     @Column(name = "updated_on", nullable = false, updatable = true)
     private Date updatedOn = new Date();
     
-	@Column(name = "active_status", columnDefinition = "int default 1")
-	private Integer activeStatus = 1;
+	@Column(name = "active_status", columnDefinition = "int default 0")
+	private Integer activeStatus = 0;
 
 	public Date getCreatedOn() {
 		return createdOn;

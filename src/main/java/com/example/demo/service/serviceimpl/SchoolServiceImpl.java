@@ -6,6 +6,7 @@ import com.example.demo.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -65,9 +66,23 @@ public class SchoolServiceImpl implements SchoolService {
 	}
 
 	@Override
-	public Page<School> fetchStudentListWithPagination(int pageNumber, int pageSize) {
-		Page<School> page = schoolRepo.findAll(PageRequest.of(pageNumber, pageSize));
+	public Page<School> fetchStudentListWithPagination(String studentId,int pageNumber, int pageSize) {
+		Page<School> page = schoolRepo.findAll(PageRequest.of(pageNumber, pageSize,Sort.by(studentId)));
 		return page;
+	}
+
+	@Override
+	public Page<School> fetchStudentListSortAndPagenation(String studentId,int pageNumber, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNumber, pageSize,Sort.by(studentId));
+		Page<School> school = schoolRepo.findAll(pageable);
+		return school;
+	}
+
+	@Override
+	public Page<School> fetchStudentsLists(String studentId, int pageNumber, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNumber, pageSize,Sort.by(studentId));
+		 Page<School> school = schoolRepo.findAll(pageable);
+		return  school ;
 	}
 
 }

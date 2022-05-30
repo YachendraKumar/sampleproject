@@ -23,5 +23,9 @@ public interface SchoolService {
 
 	public List<School> fetchStudentListWithSorting(String studentId);
 
-	public Page<School> fetchStudentListWithPagination(int pageNumber, int pageSize);
+	public Page<School> fetchStudentListWithPagination(String studentId,int pageNumber, int pageSize);
+
+	public Page<School> fetchStudentListSortAndPagenation(String studentId,int pageNumber, int pageSize);
+
+	public Page<School> fetchStudentsLists(String studentId, int pageNumber, int pageSize);
 }

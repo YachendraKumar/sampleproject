@@ -66,9 +66,21 @@ public class SchoolController {
     	 return new CommonResponse(school.size(), "true", school, true, true);
     }
     
-    @GetMapping("/school/list/{pageNumber}/{pageSize}")
-    public CommonResponse fetchStudentListWithPagination(@PathVariable int pageNumber,@PathVariable int pageSize){
-    	 Page<School> school = schoolService.fetchStudentListWithPagination(pageNumber,pageSize);
+    @GetMapping("/school/list/{pageNumber}/{pageSize}/{studentId}")
+    public CommonResponse fetchStudentListWithPagination(@PathVariable String studentId ,@PathVariable int pageNumber,@PathVariable int pageSize){
+    	 Page<School> school = schoolService.fetchStudentListWithPagination(studentId,pageNumber,pageSize);
     	 return new CommonResponse(school.getSize(), "true", school, true, true);
+    }
+    
+    @GetMapping("/school/list/page/{studentId}")
+    public CommonResponse fetchStudentListSortAndPagenation(@PathVariable String studentId,@RequestParam(required = false) int pageNumber,@RequestParam(required = false) int pageSize) {
+    	Page<School> schoolie = schoolService.fetchStudentListSortAndPagenation(studentId,pageNumber,pageSize);
+    	return new CommonResponse(schoolie.getSize(), "true", schoolie, true, true);
+    }
+    
+    @GetMapping("students/list/{studentId}")
+    public CommonResponse fetchStudentsLists(@PathVariable String studentId,@RequestParam(required = false) int pageNumber,@RequestParam(required = false) int pageSize) {
+    	 Page<School> schools = schoolService.fetchStudentsLists(studentId,pageNumber,pageSize);
+    	 return new CommonResponse(schools.getSize(), "true", schools, true, true);
     }
 }
