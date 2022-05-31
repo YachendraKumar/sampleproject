@@ -51,8 +51,7 @@ public class Student extends CommonFields {
     private Guardian guardian;
 
     
-    
-    
+ 
 	public Guardian getGuardian() {
 		return guardian;
 	}
