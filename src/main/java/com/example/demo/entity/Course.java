@@ -1,11 +1,15 @@
 package com.example.demo.entity;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -36,8 +40,27 @@ public class Course extends CommonFields{
 	@JoinColumn(name="teacher_id",referencedColumnName = "teacherId")
 	private Teacher teacher;
 	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable
+	(
+		name ="student_course_map",
+		joinColumns = @JoinColumn(name ="course_id", referencedColumnName = "courseId") ,
+		inverseJoinColumns = @JoinColumn(name="stud_id",referencedColumnName = "studId")
+	)
+	private List<Student> students;
+	
 	
    //Getters and Setters
+	
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+	
+	
 	public Long getCourseId() {
 		return courseId;
 	}

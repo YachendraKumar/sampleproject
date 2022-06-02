@@ -33,4 +33,8 @@ public class CourseController {
 		return new CommonResponse(cours.size(),"true",cours,true,true);
 	}
 	
+	@PostMapping("/save/course/student/teacher")
+	public CommonResponse saveCourseAndStudentWithTeacher(@RequestBody Course course) {
+		return new CommonResponse(1,"true",courseService.saveCourseAndStudentWithTeacher(course),true,true);
+	}
 }

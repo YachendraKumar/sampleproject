@@ -10,4 +10,6 @@ public interface CourseService {
 
 	List<Course> fetchCourseWithTeacher(Course course);
 
+	Object saveCourseAndStudentWithTeacher(Course course);
+
 }
